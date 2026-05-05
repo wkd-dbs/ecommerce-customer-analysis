@@ -153,6 +153,7 @@ At Risk 그룹은 K-means에서 두 갈래로 분리됨 (Cluster 1: 36% / Cluste
 
 ## ▶ 파일 구조
 
+```
 ecommerce-analysis/
 ├── notebooks/
 │   ├── 1_data_exploration.ipynb     # 데이터 탐색 및 품질 검증
@@ -162,6 +163,7 @@ ecommerce-analysis/
 ├── data/                            # Kaggle 데이터 (gitignore)
 ├── .gitignore
 └── README.md
+```
 
 ---
 
