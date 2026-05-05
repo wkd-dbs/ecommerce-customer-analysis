@@ -5,7 +5,7 @@
 - 개발 기간: 2026.05
 - 개발 환경: Python 3.13 / Jupyter Notebook / VS Code
 
-## 핵심 요약
+## ▶ 핵심 요약
 
 이 프로젝트의 진짜 결과는 분석 기법의 적용이 아니라, **표준 분석 프레임워크를 데이터 분포에 맞춰 검증·재설계한 과정**입니다.
 
@@ -20,14 +20,14 @@
 3. **코호트 크기와 retention의 음의 상관관계(r = -0.472)**  
    대규모 유입 코호트일수록 1개월 retention이 낮음. 대규모 마케팅/프로모션 유입의 retention 비용에 대한 시사점.
 
-## 기술 스택
+## ▶ 기술 스택
 
 - 언어: Python 3.13
 - 데이터: pandas, numpy
 - 시각화: matplotlib, seaborn
 - 모델링: scikit-learn (StandardScaler, KMeans, silhouette_score)
 
-## 사용 데이터
+## ▶ 사용 데이터
 
 | 데이터 | 출처 | 규모 |
 |---|---|---|
@@ -37,7 +37,7 @@
 
 데이터 출처: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
-## 분석 흐름
+## ▶ 분석 흐름
 
 ### 1. 데이터 탐색 및 품질 검증 (`1_data_exploration.ipynb`)
 - 9개 테이블 로드 및 관계 파악
@@ -63,7 +63,7 @@
 - 코호트별 retention curve 비교
 - 코호트 크기와 retention의 상관관계 분석
 
-## 주요 결과
+## ▶ 주요 결과
 
 ### RFM 세그먼트 분포
 
@@ -109,7 +109,7 @@ At Risk 그룹은 K-means에서 두 갈래로 분리됨 (Cluster 1: 36% / Cluste
 코호트 크기와 1개월 retention의 상관계수: **r = -0.472**  
 대규모 유입 코호트일수록 retention이 낮은 경향.
 
-## 가설 vs 실제 결과
+## ▶ 가설 vs 실제 결과
 
 | 항목 | 사전 가설 | 실제 결과 |
 |---|---|---|
@@ -118,7 +118,7 @@ At Risk 그룹은 K-means에서 두 갈래로 분리됨 (Cluster 1: 36% / Cluste
 | Retention 곡선 | 점진적 감소 | 1개월에 급격히 감소 후 거의 0에 수렴 |
 | 코호트 규모 효과 | 무관할 것 | 음의 상관관계(r=-0.47), 마케팅 유입의 함정 |
 
-## 한계점
+## ▶ 한계점
 
 - 외국 이커머스 데이터(브라질)로 한국 시장과 직접 비교 불가
 - 분석 기간 2년으로 12개월 이상 retention은 일부 코호트만 관측
@@ -126,14 +126,14 @@ At Risk 그룹은 K-means에서 두 갈래로 분리됨 (Cluster 1: 36% / Cluste
 - 외부 변수(마케팅 캠페인, 프로모션 시점) 미반영
 - 카테고리/지역별 세분화 분석은 향후 과제
 
-## 향후 개선 방향
+## ▶ 향후 개선 방향
 
 - 카테고리별 RFM 세분화 (어떤 카테고리에서 retention이 높은가)
 - 지역(state)별 고객 행동 차이 분석
 - 결제 방식(credit_card vs boleto)과 retention의 관계
 - CLV(Customer Lifetime Value) 모델링으로 세그먼트별 미래 가치 예측
 
-## 파일 구조
+## ▶ 파일 구조
 
 ecommerce-analysis/
 ├── notebooks/
@@ -145,7 +145,7 @@ ecommerce-analysis/
 ├── .gitignore
 └── README.md
 
-## 데이터 다운로드
+## ▶ 데이터 다운로드
 
 데이터 파일은 용량 문제로 저장소에 포함하지 않았습니다. 
 [Kaggle 페이지](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)에서 직접 다운로드 후 `data/` 폴더에 압축 해제하면 노트북을 실행할 수 있습니다.
