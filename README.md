@@ -19,8 +19,10 @@
 2. **규칙 기반 RFM과 K-means의 교차 검증으로 분류 안정성 입증**  
    핵심 세그먼트(Champions, Loyal)가 두 방법에서 100% 일치. At Risk 그룹은 K-means에서 두 갈래로 분리되어 추가 세분화 가능성 발견.
 
-3. **코호트 크기와 retention의 음의 상관관계(r = -0.472)**  
-   대규모 유입 코호트일수록 1개월 retention이 낮음. 대규모 마케팅/프로모션 유입의 retention 비용에 대한 시사점.
+3. **코호트 크기와 retention의 음의 상관관계 (r = -0.472, p = 0.036)**  
+   Pearson 상관 검정 결과 통계적으로 유의 (n = 20). 대규모 유입 코호트일수록 1개월 retention이 낮음. 대규모 마케팅/프로모션 유입의 retention 비용에 대한 시사점.
+
+![코호트 크기와 retention](images/cohort_size_vs_retention.png)
 
    ---
 
@@ -77,6 +79,8 @@
 
 ### RFM 세그먼트 분포
 
+![RFM 세그먼트별 분포 및 매출 기여도](images/rfm_segments.png)
+
 | 세그먼트 | 고객 수 | 비율 |
 |---|---:|---:|
 | Hibernating | 22,582 | 24.19% |
@@ -107,6 +111,8 @@ At Risk 그룹은 K-means에서 두 갈래로 분리됨 (Cluster 1: 36% / Cluste
 
 ### 코호트 retention
 
+![코호트 retention 히트맵](images/cohort_heatmap.png)
+
 | 시점 | Retention |
 |---|---:|
 | 1개월 후 | 5.45% |
@@ -116,8 +122,8 @@ At Risk 그룹은 K-means에서 두 갈래로 분리됨 (Cluster 1: 36% / Cluste
 
 1개월 retention이 그 이후 대비 약 20배 높음. 재구매 의사결정이 사실상 첫 달 안에 결정됨.
 
-코호트 크기와 1개월 retention의 상관계수: **r = -0.472**  
-대규모 유입 코호트일수록 retention이 낮은 경향.
+코호트 크기와 1개월 retention의 상관계수: **r = -0.472** (p = 0.036, n = 20)  
+Pearson 상관 검정 결과 통계적으로 유의 (α = 0.05). 대규모 유입 코호트일수록 retention이 낮은 경향.
 
 ---
 
