@@ -2,8 +2,14 @@
 
 브라질 이커머스 플랫폼 Olist의 고객 행동을 RFM 세그먼테이션, K-means 클러스터링, 코호트 분석으로 다각도 분석한 개인 프로젝트입니다.
 
-- 개발 기간: 2026.05
-- 개발 환경: Python 3.13 / Jupyter Notebook / VS Code
+**개발 기간**: 2026.02
+
+## ▶ 기술 스택
+
+- 언어: Python 3.13
+- 데이터: pandas, numpy
+- 시각화: matplotlib, seaborn
+- 모델링: scikit-learn (StandardScaler, KMeans, silhouette_score)
 
 ---
 
@@ -24,26 +30,17 @@
 
 ![코호트 크기와 retention](images/cohort_size_vs_retention.png)
 
-   ---
-
-## ▶ 기술 스택
-
-- 언어: Python 3.13
-- 데이터: pandas, numpy
-- 시각화: matplotlib, seaborn
-- 모델링: scikit-learn (StandardScaler, KMeans, silhouette_score)
-
 ---
 
-## ▶ 사용 데이터
+## ▶ 핵심 인사이트
 
-| 데이터 | 출처 | 규모 |
-|---|---|---|
-| Brazilian E-Commerce Public Dataset | Kaggle (Olist) | 9개 테이블, 약 10만 건 주문 |
-| 분석 기간 | 2016.09 ~ 2018.10 | 약 2년 (772일) |
-| 분석 대상 | 배송 완료 주문 | 96,478건, 93,358명 |
+1. **표준 프레임워크는 시작점일 뿐** — RFM 8-segment는 교과서 기본이지만, F=1이 96%인 데이터에서는 분류력을 잃음. 데이터 분포 점검 없이 표준을 그대로 쓰면 의미 없는 세그먼트가 양산됨.
 
-데이터 출처: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+2. **두 가지 방법이 같은 결론을 낼 때 분류는 신뢰할 수 있다** — RFM(규칙 기반)과 K-means(거리 기반)는 완전히 다른 원리지만 핵심 세그먼트(Champions, Loyal)에서 100% 일치. 이는 해당 라벨이 데이터 구조에 내재된 자연스러운 군집임을 시사.
+
+3. **소표본에서는 p-value를 신뢰하기 전에 이상치를 의심하라** — n=20에서 p=0.036의 통계적 유의성도 코호트 1개로 뒤집힘. 통계적 유의성 ≠ 실질적 유의성.
+
+4. **고객의 96%가 1회 구매라는 사실은 비즈니스 시사점** — 1개월 retention 5.45% → 3개월 0.25%의 절벽 패턴과 결합해 보면, Olist는 "재구매를 만들지 못하는 구조"를 점검할 필요. 신규 획득보다 재구매 전환이 더 큰 레버.
 
 ---
 
@@ -83,12 +80,12 @@
 
 | 세그먼트 | 고객 수 | 비율 |
 |---|---:|---:|
-| Hibernating | 22,582 | 24.19% |
-| Potential | 21,772 | 23.32% |
-| Average | 18,105 | 19.39% |
 | Champions | 14,452 | 15.48% |
-| At Risk | 13,646 | 14.62% |
 | Loyal | 2,801 | 3.00% |
+| Potential | 21,772 | 23.32% |
+| At Risk | 13,646 | 14.62% |
+| Average | 18,105 | 19.39% |
+| Hibernating | 22,582 | 24.19% |
 
 ### K-means 클러스터링 결과 (k=4)
 
@@ -103,9 +100,9 @@
 
 규칙 기반 분류와 K-means가 핵심 세그먼트에서 높은 일치율을 보임:
 
-- Champions -> Cluster 1: **100% 매칭**
-- Loyal -> Cluster 3: **100% 매칭**
-- Hibernating -> Cluster 2: 80.9% 매칭
+- Champions로 분류된 고객 14,452명 **전원이 K-means Cluster 1**에 속함
+- Loyal로 분류된 고객 2,801명 **전원이 Cluster 3**에 속함
+- Hibernating으로 분류된 고객의 **80.9%가 Cluster 2**에 속함
 
 At Risk 그룹은 K-means에서 두 갈래로 분리됨 (Cluster 1: 36% / Cluster 2: 64%) — 동일 라벨 내에서도 매출 가치가 이질적임을 시사.
 
@@ -117,7 +114,6 @@ At Risk 그룹은 K-means에서 두 갈래로 분리됨 (Cluster 1: 36% / Cluste
 |---|---:|
 | 1개월 후 | 5.45% |
 | 3개월 후 | 0.25% |
-| 6개월 후 | 0.27% |
 | 12개월 후 | 0.21% |
 
 1개월 retention이 그 이후 대비 약 20배 높음. 재구매 의사결정이 사실상 첫 달 안에 결정됨.
@@ -180,7 +176,10 @@ ecommerce-analysis/
 
 ---
 
-## ▶ 데이터 다운로드
+## ▶ 사용 데이터
 
-데이터 파일은 용량 문제로 저장소에 포함하지 않았습니다. 
-[Kaggle 페이지](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)에서 직접 다운로드 후 `data/` 폴더에 압축 해제하면 노트북을 실행할 수 있습니다.
+| 데이터 | 출처 | 규모 |
+|---|---|---|
+| Brazilian E-Commerce Public Dataset | [Kaggle (Olist)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) | 9개 테이블, 약 10만 건 주문 |
+| 분석 기간 | 2016.09 ~ 2018.10 | 약 2년 |
+| 분석 대상 | 배송 완료 주문 | 96,478건, 93,358명 |
